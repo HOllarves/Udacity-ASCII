@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ascii Forum!</title>
+    <style type="text/css">
+        .input-group {
+            padding:10px;
+        }
+        label {
+            vertical-align: top
+        }
+        .error {
+            font-weight: bold;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>/ASCII/</h1>
+    <form action="/" method="post">
+        <div class="input-group">
+            <label for="name">Title:</label>
+            <input type="text" name="title" value="{{ title }}">
+        </div>
+        <div class="input-group">
+            <label for="art">Art:</label>
+            <textarea name="art" cols="30" rows="10">{{ art }}</textarea>
+        </div>
+        {% if error %}
+            <div class="error">
+                <p>{{error}}</p>
+            </div>
+        {% endif %}
+        <div class="input-group">
+            <input type="submit" value="Send">
+        </div>
+    </form>
+    <hr>
+    {% if arts %}
+        {% for post in arts %}
+            <div class="art">
+                <div class="art-title">
+                    <h2>{{ post.title }}</h2>
+                </div>
+                <div class="art-body">
+                    <pre>{{ post.art }}</pre>
+                </div>
+            </div>
+        {% endfor %}
+    {% endif %}
+</body>
+</html>
